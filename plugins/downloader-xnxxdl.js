@@ -15,11 +15,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 *🗂️ info:* ${x.info}
 *📊 duration:* ${x.duration}
     `
-    conn.send2ButtonImg(m.chat, x.image, caption, botdate,
-'LOW', '.get ' + x.files.low,
-'HIGH', '.get ' + x.files.high
-, m)
-	} catch (e) {
+conn.sendFile(m.chat, x.files.low, 'asupan.mp4', caption, m)
+} catch (e) {
 		throw e;
 	}
 }
