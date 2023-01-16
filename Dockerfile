@@ -12,8 +12,6 @@ COPY package.json .
 
 RUN npm install && npm install qrcode-terminal
 
-RUN npm run dev
-
 COPY . .
 
 EXPOSE 5000
