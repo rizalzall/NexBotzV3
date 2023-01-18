@@ -14,6 +14,7 @@ handler.help = ['ojoin <chat.whatsapp.com>']
 handler.tags = ['owner']
 
 handler.command = /^ojoin$/i
+handler.owner = premium
 
 export default handler
 
