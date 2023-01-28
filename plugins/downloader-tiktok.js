@@ -5,14 +5,14 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
    let res = await fetch(`https://api.ibeng.tech/api/download/tiktok?url=${args[0]}&apikey=ibeng`)
   if (!res.ok) throw await res.text()
 let json = await res.json()
-    conn.sendHydrated(m.chat, `${htki} ᴛɪᴋᴛᴏᴋ ᴡᴍ ${htka}`, `➔ ɴɪᴄᴋɴᴀᴍᴇ ${nickname}${description ? `\n➔ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ:\n${description}` : ''}`, await (await fetch(url)).buffer(),
-        url, '🌎 s ᴏ ᴜ ʀ ᴄ ᴇ', null, null, [
-        ['ᴅᴏɴᴀꜱɪ', `.donasi`],
-        ['ᴀᴜᴅɪᴏ', `.tiktokaudio ${args}`],
-        [null, null]], m)
+   let cap = `Cara Simpan\n\n1. Download Dulu Vidio Nya Kalau Sudah\n2. Masuk Ke Dalam Vidio Nya\n3. Lalu Tekan Titik3 Pojok Kanan Atas\n4. Lalu Pilih Yang Ada Bacaan  Simpan `
+conn.sendFile(m.chat, json.result.video, 'tiktok.mp4', cap, m)
 }
-handler.help = ['tiktok'].map(v => v + ' <url>')
+handler.help = ['ttnowm']
 handler.tags = ['downloader']
-handler.command = /^(tik(tok)?(tok)?(dl)?)$/i
+handler.command = /^(ttnowm)$/i
+
+handler.premium = false
+handler.limit = true 
 
 export default handler
