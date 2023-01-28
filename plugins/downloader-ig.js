@@ -1,16 +1,21 @@
-import { instagramdl, instagramdlv2, instagramdlv3, instagramdlv4 } from '@bochilteam/scraper'
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-    if (!args[0]) throw `Use example ${usedPrefix}${command} https://www.instagram.com/p/ByxKbUSnubS/?utm_source=ig_web_copy_link`
-    const results = await instagramdl(args[0])
-        .catch(async _ => await instagramdlv2(args[0]))
-        .catch(async _ => await instagramdlv3(args[0]))
-        .catch(async _ => await instagramdlv4(args[0]))
-    for (const { url } of results) await conn.sendFile(m.chat, url, 'instagram.mp4', `🔗 *Url:* ${url}`, m)
+import instagramGetUrl from "instagram-url-direct"
+import spit from 'performance-now'
+const times = spit();
+const latensi = spit() - times
+const fetching = latensi.toFixed(4) + ' ms'
+
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+if (!text) throw 'Masukan URL Instagram...'
+let res = await instagramGetUrl(text)
+m.reply(`Mengirim ${res.results_number} Media...`)
+for(var media of res.url_list) { 
+conn.sendFile(m.chat, media, 'ig.mp4', '🍟 Fetching : ' + fetching, m)
+}
 }
 handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']
+handler.command = /^(ig|instagram(dl))$/i
 
-handler.command = /^(ig(dl)?)$/i
-
+handler.limit = 3
 
 export default handler
