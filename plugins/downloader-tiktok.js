@@ -6,11 +6,11 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
   if (!res.ok) throw await res.text()
 let json = await res.json()
    let cap = `Cara Simpan\n\n1. Download Dulu Vidio Nya Kalau Sudah\n2. Masuk Ke Dalam Vidio Nya\n3. Lalu Tekan Titik3 Pojok Kanan Atas\n4. Lalu Pilih Yang Ada Bacaan  Simpan `
-await conn.sendButtonVid(m.chat, json.result.video_original, cap, wm, 'ᴀᴜᴅɪᴏ', `.tiktokaudio ${args}`, m)
+await conn.sendFile(m.chat, json.result.video_original, 'tiktokvideo.mp4', cap, m)
 }
-handler.help = ['ttnowm']
+handler.help = ['tiktok']
 handler.tags = ['downloader']
-handler.command = /^(ttnowm)$/i
+handler.command = /^(tiktok)$/i
 
 handler.premium = false
 handler.limit = true 
